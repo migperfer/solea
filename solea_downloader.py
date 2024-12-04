@@ -4,6 +4,7 @@ import pandas as pd
 import soundfile as sf
 from scipy.signal import resample
 import yt_dlp
+import numpy as np
 
 # Define paths and constants
 ROOT_FOLDER = "./downloaded_songs"
@@ -81,6 +82,8 @@ def process_dali_group(group):
             chunk_audio = data[int(beginning * SAMPLE_RATE):int(end * SAMPLE_RATE)]
             chunk_audio_path = os.path.join(chunk_folder, "audio.flac")
             sf.write(chunk_audio_path, chunk_audio, SAMPLE_RATE, format="FLAC")
+            notes = np.array(row.notes)
+            np.savetxt(os.path.join(chunk_folder, "notes.tsv"), notes, delimiter="\t", header="onset,offset,pitch")
 
         print(f"Processed all chunks for {dali_id}.")
 

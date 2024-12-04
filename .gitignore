@@ -2,3 +2,4 @@
 *.flac
 *.webm
 .idea/
+*.tsv
