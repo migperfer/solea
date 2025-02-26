@@ -12,6 +12,3 @@ ROOT_FOLDER/
       audio.flac
       notes.tsv
 ```
-
-
-Note that this is just a sample of the dataset, we will publish the entire dataset upon paper acceptance.

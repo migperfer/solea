@@ -110,5 +110,5 @@ def process_json(json_path):
 
 
 if __name__ == "__main__":
-    json_file_path = "solea_demo.json"  # Replace with the actual path to your JSON file
+    json_file_path = "solea.json"  # Replace with the actual path to your JSON file
     process_json(json_file_path)
