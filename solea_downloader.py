@@ -1,5 +1,7 @@
 import os
 import json
+import sys
+
 import pandas as pd
 import soundfile as sf
 from scipy.signal import resample
@@ -109,6 +111,35 @@ def process_json(json_path):
         process_dali_group(group)
 
 
+def check_dataset(json_path):
+    """Check the dataset for any missing files."""
+    # Load JSON into a pandas DataFrame
+    with open(json_path, 'r') as file:
+        data = json.load(file)
+    df = pd.DataFrame(data)
+
+    # Check each group
+    grouped = df.groupby("dali_id")
+    for dali_id, group in grouped:
+        dali_folder = os.path.join(ROOT_FOLDER, dali_id)
+        for _, row in group.iterrows():
+            chunk_id = str(row["chunk_id"])
+            chunk_folder = os.path.join(dali_folder, chunk_id)
+            chunk_audio_path = os.path.join(chunk_folder, "audio.flac")
+            chunk_notes_path = os.path.join(chunk_folder, "notes.tsv")
+            if not os.path.exists(chunk_audio_path):
+                # Write in a file which chunks are missing
+                with open("missing_chunks.txt", "a") as f:
+                    f.write(f"Missing audio for {dali_id} chunk {chunk_id}\n")
+            if not os.path.exists(chunk_notes_path):
+                with open("missing_notes.txt", "a") as f:
+                    f.write(f"Missing notes for {dali_id} chunk {chunk_id}\n")
+
+
 if __name__ == "__main__":
     json_file_path = "solea.json"  # Replace with the actual path to your JSON file
+    # If the argument is --check_dataset, only check the dataset
+    if "--check_dataset" in sys.argv:
+        check_dataset(json_file_path)
+        sys.exit()
     process_json(json_file_path)
