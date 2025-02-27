@@ -133,7 +133,7 @@ def check_dataset(json_path, root_folder):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Process and check DALI dataset.")
+    parser = argparse.ArgumentParser(description="Process and check SOLEA dataset.")
     parser.add_argument("--root_folder", type=str, default="./downloaded_songs", help="Root folder for downloaded songs")
     parser.add_argument("--sample_rate", type=int, default=16000, help="Target sample rate")
     parser.add_argument("--json_file_path", type=str, default="solea.json", help="Path to the JSON file")
