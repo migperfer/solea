@@ -30,3 +30,17 @@ ROOT_FOLDER/
       audio.flac
       notes.tsv
 ```
+
+# Citation
+If you use this repo please consider citing the following work:
+```latex
+@inproceedings{Perez2025Refining,
+	title        = {Refining audio-to-score alignment for singing voice transcription},
+	author       = {Miguel Perez and Holger Kirchhoff and Peter Grosche and Xavier Serra},
+	year         = 2025,
+	booktitle    = {Proceedings of Sound and Music Computing Conference (SMC)}
+}
+```
+
+# TBA
+Add alignment code
