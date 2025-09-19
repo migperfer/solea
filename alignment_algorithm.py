@@ -8,7 +8,7 @@ from numpy.typing import NDArray
 from typing import Optional, Tuple
 
 
-def get_onsets_alignment(
+def get_events_alignment(
         audio_events: NDArray,
         score_events: NDArray,
         chroma_warping_path: NDArray,
